@@ -36,11 +36,11 @@ container_type = st.selectbox('Select Container Type', container_types)
 # Create a number input for the quantity of containers to release
 container_quantity = st.number_input('Enter Quantity of Containers to Release', min_value=1, value=1, step=1)
 
-# Create a number input for the allowance days
-allowance_days = st.number_input(f'Enter Allowance Days for {container_type}', min_value=1, value=1, step=1)
-
 # Create a date input for the port of loading date
 port_of_loading_date = st.date_input('Enter Port of Loading Date', value=datetime.now().date())
+
+# Create a number input for the allowance days
+allowance_days = st.number_input(f'Enter Allowance Days for {container_type}', min_value=1, value=1, step=1)
 
 # If the container type is '40RH', create an additional date input
 specific_date_40RH = None
