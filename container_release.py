@@ -54,11 +54,11 @@ container_type = st.selectbox('Select Container Type', container_types)
 # Create a number input for the quantity of containers to release
 container_quantity = st.number_input('Enter Quantity of Containers to Release', min_value=1, value=1, step=1)
 
+# Create a date input for the port of loading date
+port_of_loading_date = st.date_input('Enter Port of Loading Date (ETD of vessel)', value=datetime.now().date())
+
 # Create a number input for the allowance days
 allowance_days = st.number_input(f'Enter Allowance Days for {container_type} (40RH = 5 days allowance; 20ST/40ST/40HC = 8 days allowance)', min_value=1, value=1, step=1)
-
-# Create a date input for the port of loading date
-port_of_loading_date = st.date_input('Enter Port of Loading Date', value=datetime.now().date())
 
 # If the container type is '40RH', create an additional date input
 specific_date_40RH = None
@@ -71,7 +71,7 @@ if container_type == '40RH':
 earliest_pickup_date = port_of_loading_date - timedelta(days=allowance_days)
 
 # Display the earliest pickup date
-st.write(f'Earliest Pickup Date: {earliest_pickup_date.strftime("%Y-%m-%d")}')
+st.write(f'Earliest Pickup Date: {earliest_pickup_date.strftime("%Y-%m-%d")} (Loading Date - Allowance Days)')
 
 # Check if the current date is within the pickup window
 pickup_window_valid = earliest_pickup_date <= current_date <= port_of_loading_date
